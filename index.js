@@ -1,42 +1,47 @@
-const { Client, GatewayIntentBits, ActivityType } = require("discord.js");
-const Gamedig = require("gamedig");
-const config = require("./config.json");
+const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
+const Gamedig = require('gamedig');
+const config = require('./config.json');
 
 const client = new Client({
     intents: [GatewayIntentBits.Guilds]
 });
 
-async function updateServerStatus() {
-    try {
-        const state = await Gamedig.query({
-            type: "dayz",
-            host: config.host,
-            port: config.port
-        });
+const TOKEN = process.env.TOKEN;
 
-        const players = state.players.length;
-        const maxPlayers = state.maxplayers;
-
-        client.user.setActivity(
-            `${players}/${maxPlayers} Players Online`,
-            { type: ActivityType.Watching }
-        );
-
-        console.log(`Players: ${players}/${maxPlayers}`);
-    } catch (err) {
-        console.log("Server offline or unreachable");
-
-        client.user.setActivity("Server Offline", {
-            type: ActivityType.Watching
-        });
-    }
+if (!TOKEN) {
+    console.error("Missing TOKEN");
+    process.exit(1);
 }
 
-client.once("ready", () => {
+client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
 
-    updateServerStatus();
-    setInterval(updateServerStatus, config.interval);
+    setInterval(async () => {
+        try {
+            const state = await Gamedig.query({
+                type: 'dayz',
+                host: config.server.ip,
+                port: config.server.queryPort
+            });
+
+            client.user.setPresence({
+                activities: [{
+                    name: `DayZ: ${state.players.length}/${state.maxplayers}`,
+                    type: ActivityType.Playing
+                }],
+                status: 'online'
+            });
+
+        } catch {
+            client.user.setPresence({
+                activities: [{
+                    name: `DayZ: Offline`,
+                    type: ActivityType.Playing
+                }],
+                status: 'dnd'
+            });
+        }
+    }, 60000);
 });
 
-client.login(config.token);
+client.login(TOKEN);
