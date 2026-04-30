@@ -1,6 +1,6 @@
 {{
   "server": {
-    "ip": "YOUR_SERVER_IP",
-    "queryPort": 2303
+    "ip": 67.217.56.226,
+    "queryPort": 2679
   }
 }
