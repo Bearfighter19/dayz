@@ -2,7 +2,7 @@
   "prefixText": "DayZ",
   "updateIntervalMs": 60000,
   "server": {
-    "ip": 67 217 56 226,
+    "ip": "67.217.56.226",
     "queryPort": 2679
   }
 }
