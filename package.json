@@ -1,9 +1,12 @@
 {
-  "name": "dayz-discord-bot",
+  "name": "dayz-bot",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
-    "discord.js": "^14.16.0",
-    "gamedig": "^4.0.5"
+    "discord.js": "^14.14.1",
+    "gamedig": "^4.0.6"
   }
 }
