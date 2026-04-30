@@ -1,8 +1,6 @@
 {
-  "prefixText": "DayZ",
-  "updateIntervalMs": 60000,
-  "server": {
-    "ip": "67.217.56.226",
-    "queryPort": 2679
-  }
+  "token": "MTQ5OTI1Mjg0Mjg3NDI3NzkwOA.GYeYx-.szlTcykWSUhH5mgAz5zfr0IHulDgwNqJ_4Vm5o",
+  "host": "67.217.56.226",
+  "port": 2679,
+  "interval": 60000
 }
