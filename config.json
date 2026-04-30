@@ -1,0 +1,6 @@
+{{
+  "server": {
+    "ip": "YOUR_SERVER_IP",
+    "queryPort": 2303
+  }
+}
