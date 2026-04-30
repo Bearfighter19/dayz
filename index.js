@@ -6,7 +6,7 @@ const client = new Client({
     intents: [GatewayIntentBits.Guilds]
 });
 
-//--const TOKEN = process.env.TOKEN;
+const TOKEN = process.env.TOKEN;
 
 if (!TOKEN) {
     console.error("Missing TOKEN");
